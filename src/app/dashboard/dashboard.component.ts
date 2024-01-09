@@ -34,15 +34,7 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  isValid(name: string): boolean {
-    let control = null;
-    control = this.userForm?.get(name);
-    if (control) {
-      return control.invalid && control.touched;
-    } else {
-      return true;
-    }
-  }
+
 
   onSubmit() {
     console.log(this.userForm.value);
@@ -152,7 +144,7 @@ export class DashboardComponent implements OnInit {
       student.email === this.selectedStudent.email
     );
 
-    // אם נמצא הסטודנט במערך, עדכון הנתונים במערך
+    // אם נמצא הסטודנט במערך, מחיקת הנתונים במערך
     if (index !== -1) {
       this.students.splice(index, 1);
       this.updateFilteredStudents();
@@ -160,6 +152,15 @@ export class DashboardComponent implements OnInit {
       localStorage.setItem('students', JSON.stringify(this.students));
     }
     this.resetForm();
+  }
+  isValid(name: string): boolean {
+    let control = null;
+    control = this.userForm?.get(name);
+    if (control) {
+      return control.invalid && control.touched;
+    } else {
+      return true;
+    }
   }
 }
 
