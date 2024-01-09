@@ -1,0 +1,120 @@
+<p>פרטי הסטודנט:</p>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="input-group">
+    <label for="firstName">שם פרטי:</label>
+    <input type="text" id="firstName" formControlName="firstName" />
+    <ng-container *ngIf="userForm.get('firstName')?.hasError('required') && userForm.get('firstName')?.touched">
+      <div class="invalid">
+        שם פרטי הינו שדה חובה
+      </div>
+    </ng-container>
+    <ng-container *ngIf="userForm.get('firstName')?.hasError('minlength')">
+      <div class="invalid">
+        יש להכיל לפחות 2 תווים
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="input-group">
+    <label for="lastName">שם משפחה:</label>
+    <input type="text" id="lastName" formControlName="lastName" />
+    <ng-container *ngIf="userForm.get('lastName')?.hasError('required') && userForm.get('lastName')?.touched">
+      <div class="invalid">
+        שם משפחה הינו שדה חובה
+      </div>
+    </ng-container>
+    <ng-container *ngIf="userForm.get('lastName')?.hasError('minlength')">
+      <div class="invalid">
+        יש להכיל לפחות 2 תווים
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="input-group">
+    <label for="idNumber">תעודת זהות:</label>
+    <input type="text" id="idNumber" formControlName="idNumber" />
+    <ng-container *ngIf="userForm.get('idNumber')?.hasError('required') && userForm.get('idNumber')?.touched">
+      <div class="invalid">
+        תעודת זהות הינה שדה חובה
+      </div>
+    </ng-container>
+    <ng-container *ngIf="userForm.get('idNumber')?.hasError('minlength')">
+      <div class="invalid">
+        יש להכיל לפחות 7 תווים
+      </div>
+    </ng-container>
+    <ng-container *ngIf="userForm.get('idNumber')?.hasError('maxlength')">
+      <div class="invalid">
+        אין להכיל יותר מ־10 תווים
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="input-group">
+    <label for="phone">טלפון:</label>
+    <input type="tel" id="phone" formControlName="phone" />
+    <ng-container *ngIf="userForm.get('phone')?.hasError('required') && userForm.get('phone')?.touched">
+      <div class="invalid">
+        טלפון הינו שדה חובה
+      </div>
+    </ng-container>
+    <ng-container *ngIf="userForm.get('phone')?.hasError('minlength')">
+      <div class="invalid">
+        יש להכיל לפחות 7 תווים
+      </div>
+    </ng-container>
+    <ng-container *ngIf="userForm.get('phone')?.hasError('maxlength')">
+      <div class="invalid">
+        אין להכיל יותר מ־11 תווים
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="input-group">
+    <label for="email">מייל:</label>
+    <input type="email" id="email" formControlName="email" />
+    <ng-container *ngIf="userForm.get('email')?.hasError('required') && userForm.get('email')?.touched">
+      <div class="invalid">
+        אימייל הינו שדה חובה
+      </div>
+    </ng-container>
+    <ng-container *ngIf="userForm.get('email')?.hasError('email') && userForm.get('email')?.touched">
+      <div class="invalid">
+        אימייל אינו תקין
+      </div>
+    </ng-container>
+  </div>
+  <br />
+  <button [disabled]="!userForm.valid" type="submit">הוסף</button>
+</form>
+<div>
+  <button (click)="saveChanges()">שמירה</button>
+  <button (click)="resetForm()">ניקוי טופס</button>
+  <button (click)="deleteStudent()">מחיקה</button>
+</div>
+<div>
+  <br>
+  <label for="searchId">חיפוש לפי תעודת זהות:</label>
+  <input type="text" id="searchId" [(ngModel)]="searchId" (input)="search()" />
+</div>
+<div *ngIf="filteredStudents.length === 0">
+  <p>לא נמצאו נתונים התואמים את החיפוש</p>
+</div>
+<table *ngIf="filteredStudents.length > 0" >
+  <thead>
+    <tr>
+      <th>שם מלא</th>
+      <th>תעודת זהות</th>
+      <th>טלפון</th>
+      <th>מייל</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of filteredStudents" (click)="fillForm(student)">
+      <td>{{ student.firstName }} {{ student.lastName }}</td>
+      <td>{{ student.idNumber }}</td>
+      <td>{{ student.phone }}</td>
+      <td>{{ student.email }}</td>
+    </tr>
+  </tbody>
+</table>

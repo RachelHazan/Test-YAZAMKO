@@ -1,0 +1,80 @@
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+p {
+  color: #03251e;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+label {
+  text-align: right;
+  font-size: x-small;
+  color: #03251e;
+  margin-bottom: 5px;
+}
+
+input {
+  border: none;
+  border-bottom: 2px solid #04352a;
+  font-size: x-small;
+  margin-bottom: 5px; /* יציב גובה כללי לכל אינפוט */
+}
+
+div.invalid {
+  color: red;
+  font-size: xx-small;
+  margin-top: -8px;
+}
+
+/* סגנון רגיל של כל הכפתורים */
+button {
+  font-size: x-small;
+  font-style: bold;
+  margin: 0.5em;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color:  rgb(7, 150, 119); 
+  color: #ffffff; /* צבע טקסט בעת העברה */
+}
+
+button {
+  border: 1px solid  rgb(1, 62, 49);; /* גבולות הכפתור */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+th, td {
+  border: 1px solid #04352a;
+  padding: 6px; /* קטן יותר מ-8px */
+  text-align: center;
+  font-size: x-small; /* יכול לשנות על פי הצורך */
+}
+
+th {
+  background-color: rgb(2, 198, 155);
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
